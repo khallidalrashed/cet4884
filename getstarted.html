@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Your Profile</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Create Your Profile</h1>
+        
+    </header>
+
+    <main>
+        <section id="profile-creation">
+            <h2>Tell Us About Yourself</h2>
+            <div class="form-container">
+                <form id="profile-form">
+                    <label for="profile-picture">Profile Picture:</label>
+                    <input type="file" id="profile-picture" name="profile-picture" accept="image/*" required>
+
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required placeholder="Enter your name">
+
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" name="age" required placeholder="Enter your age">
+
+                    <label>Gender:</label>
+                    <label><input type="radio" name="gender" value="male" required> Male</label>
+                    <label><input type="radio" name="gender" value="female"> Female</label>
+                    <label><input type="radio" name="gender" value="other" id="gender-other"> Other</label>
+                    <div id="gender-other-explanation">
+                        <label for="other-gender">Please explain:</label>
+                        <input type="text" id="other-gender" name="other-gender" placeholder="Enter your gender (optional)">
+                    </div>
+
+                    <label for="bio">Bio:</label>
+                    <textarea id="bio" name="bio" placeholder="Tell us about yourself" rows="4"></textarea>
+                    
+                    <label for="preferences">Roommate Preferences:</label>
+                    <textarea id="preferences" name="preferences" placeholder="What are you looking for in a roommate?" rows="4"></textarea>
+
+                    <label>Do you have pets?</label>
+                    <label><input type="radio" name="pets" value="yes" id="pets-yes" required> Yes</label>
+                    <label><input type="radio" name="pets" value="no" id="pets-no"> No</label>
+
+                    <div id="pets-details">
+                        <label for="pets-info">Please list the types and numbers of pets:</label>
+                        <textarea id="pets-info" name="pets-info" placeholder="e.g., 2 dogs, 1 cat" rows="4"></textarea>
+                    </div>
+
+                    <button type="submit">Create Profile</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="profile-display">
+            <h2>Your Profile</h2>
+            <div id="profile-info"></div>
+        </section>
+
+    <footer>
+        <p>Created by Group 11 &copy; 2024</p>
+    </footer>
+
+    <script>
+        
+        document.querySelectorAll('input[name="pets"]').forEach(input => {
+            input.addEventListener('change', function() {
+                const petsDetails = document.getElementById('pets-details');
+                petsDetails.style.display = this.value === 'yes' ? 'block' : 'none';
+            });
+        });
+
+       
+        document.getElementById('gender-other').addEventListener('change', function() {
+            document.getElementById('gender-other-explanation').style.display = 'block';
+        });
+
+        document.querySelectorAll('input[name="gender"]').forEach(input => {
+            if (input.value !== 'other') {
+                input.addEventListener('change', function() {
+                    document.getElementById('gender-other-explanation').style.display = 'none';
+                });
+            }
+        });
+
+        
+        document.getElementById('profile-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const profileInfo = `
+                <h3>Profile Picture:</h3>
+                <img src="${URL.createObjectURL(document.getElementById('profile-picture').files[0])}" alt="Profile Picture" style="width: 150px; height: auto;">
+                <h3>Name:</h3>
+                <p>${document.getElementById('name').value}</p>
+                <h3>Age:</h3>
+                <p>${document.getElementById('age').value}</p>
+                <h3>Gender:</h3>
+                <p>${document.querySelector('input[name="gender"]:checked').value}${document.getElementById('gender-other').checked ? ': ' + document.getElementById('other-gender').value : ''}</p>
+                <h3>Bio:</h3>
+                <p>${document.getElementById('bio').value}</p>
+                <h3>Roommate Preferences:</h3>
+                <p>${document.getElementById('preferences').value}</p>
+                <h3>Pets:</h3>
+                <p>${document.querySelector('input[name="pets"]:checked').value}</p>
+                <p id="pet-info">${document.querySelector('input[name="pets"]:checked').value === 'yes' ? document.getElementById('pets-info').value : ''}</p>
+            `;
+
+            document.getElementById('profile-info').innerHTML = profileInfo;
+
+            document.getElementById('profile-creation').style.display = 'none';
+            document.getElementById('profile-display').style.display = 'block';
+        });
+    </script>
+
+</body>
+</html>
