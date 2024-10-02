@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Roommate Finder - Find the perfect roommate!">
+    <title>Roommate Finder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+    <header>
+        <h1>Roommate Finder</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Login</a></li>
+                <li><a href="#">Signup</a></li>
+                <li><a href="#">Search</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
+        </nav>
+    </header>
+
+   
+    <main>
+        
+        <section id="welcome">
+            <h2>Welcome to Roommate Finder</h2>
+            <p>Find the perfect roommate that matches your preferences.</p>
+            <a href="#" class="cta-button">Get Started</a>
+        </section>
+
+       
+        <section id="login-signup">
+            <h2>Login or Signup</h2>
+            <div class="form-container">
+                <form action="/login" method="POST">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                    <button type="submit">Login</button>
+                </form>
+                <p>Don't have an account? <a href="#">Sign up here</a></p>
+            </div>
+        </section>
+
+        
+        <section id="search">
+            <h2>Search for Roommates</h2>
+            <form action="/search" method="GET">
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" placeholder="City or ZIP code" required>
+                
+                <label for="budget">Budget ($):</label>
+                <input type="number" id="budget" name="budget" placeholder="Max Rent Budget" required>
+                
+                <label for="preferences">Preferences:</label>
+                <textarea id="preferences" name="preferences" placeholder="Describe your ideal roommate"></textarea>
+                
+                <button type="submit">Search</button>
+            </form>
+        </section>
+    </main>
+
+    
+    <footer>
+        <p>Created by Group 11 &copy; 2024</p>
+    </footer>
+
+</body>
+</html>
