@@ -31,7 +31,6 @@
                     <label><input type="radio" name="gender" value="male" required> Male</label>
                     <label><input type="radio" name="gender" value="female"> Female</label>
                     
-                   
 
                     <label for="bio">Bio:</label>
                     <textarea id="bio" name="bio" placeholder="Tell us about yourself" rows="4"></textarea>
@@ -72,21 +71,11 @@
         });
 
        
-        document.getElementById('gender-other').addEventListener('change', function() {
-            document.getElementById('gender-other-explanation').style.display = 'block';
-        });
-
-        document.querySelectorAll('input[name="gender"]').forEach(input => {
-            if (input.value !== 'other') {
-                input.addEventListener('change', function() {
-                    document.getElementById('gender-other-explanation').style.display = 'none';
-                });
-            }
-        });
+       
 
         
         document.getElementById('profile-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the default form submission
+            event.preventDefault(); 
 
             const profileInfo = `
                 <h3>Profile Picture:</h3>
@@ -115,3 +104,4 @@
 
 </body>
 </html>
+
