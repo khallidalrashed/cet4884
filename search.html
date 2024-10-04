@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roommate Compatibility Finder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Roommate Compatibility Finder</h1>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <h2>Find Your Compatible Roommate</h2>
+            <form id="preferencesForm">
+                <h3>Your Preferences</h3>
+                
+                <label for="cleanliness">Cleanliness (1: Minimal - 5: Important): </label>
+                <input type="number" id="cleanliness" name="cleanliness" min="1" max="5" required><br>
+
+                <label for="noise">Noise Level Tolerance (1: Tolerable - 5: Important): </label>
+                <input type="number" id="noise" name="noise" min="1" max="5" required><br>
+
+                <label for="sleeping">Sleeping Schedule (1: Early, 2: Night Owl): </label>
+                <input type="number" id="sleeping" name="sleeping" min="1" max="2" required><br>
+
+                <label for="studyHabits">Study Habits (1: Quiet, 2: Social Learner): </label>
+                <input type="number" id="studyHabits" name="studyHabits" min="1" max="2" required><br>
+
+                <button type="submit">Submit Preferences</button>
+            </form>
+        </div>
+
+        <section id="profile-display" class="content">
+            <h3>Suggested Roommates</h3>
+            <div id="suggestedRoommates"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Created by Group 11 &copy; 2024</p>
+    </footer>
+
+    <script>
+        const roommateProfiles = [
+            { name: "John", cleanliness: 4, noise: 3, sleeping: 1, studyHabits: 1 },
+            { name: "Emily", cleanliness: 2, noise: 5, sleeping: 2, studyHabits: 2 },
+            { name: "Alex", cleanliness: 5, noise: 2, sleeping: 1, studyHabits: 1 },
+            { name: "Taylor", cleanliness: 3, noise: 4, sleeping: 2, studyHabits: 2 }
+        ];
+
+        document.getElementById('preferencesForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const userPreferences = {
+                cleanliness: parseInt(document.getElementById('cleanliness').value),
+                noise: parseInt(document.getElementById('noise').value),
+                sleeping: parseInt(document.getElementById('sleeping').value),
+                studyHabits: parseInt(document.getElementById('studyHabits').value)
+            };
+
+            function calculateScore(userPrefs, roommate) {
+                let score = 0;
+                score += 5 - Math.abs(userPrefs.cleanliness - roommate.cleanliness);
+                score += 5 - Math.abs(userPrefs.noise - roommate.noise);
+                if (userPrefs.sleeping === roommate.sleeping) score += 2;
+                if (userPrefs.studyHabits === roommate.studyHabits) score += 2;
+                return score; 
+            }
+
+            const resultsDiv = document.getElementById('suggestedRoommates');
+            resultsDiv.innerHTML = ''; 
+
+            roommateProfiles.forEach(roommate => {
+                const score = calculateScore(userPreferences, roommate);
+                const roommateDiv = document.createElement('div');
+                roommateDiv.classList.add('roommate-box'); 
+                roommateDiv.innerHTML = `<strong>${roommate.name}</strong> - Compatibility Score: ${score}/14`;
+                resultsDiv.appendChild(roommateDiv);
+            });
+        });
+    </script>
+    <div class="content">
+        
+    
+
+        <a href="index.html" class="back-link">Back</a>
+    </div>
+
+</body>
+</html>
