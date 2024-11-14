@@ -3,40 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Signup & Login</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
-    <h1>Welcome to the Login Page</h1>
+    <h1>Signup & Login</h1>
+    <nav>
+        <ul>
+           
+            <li><a href="#" id="login-link">Login</a></li>
+            <li><a href="#" id="signup-link">Signup</a></li>
+        </ul>
+    </nav>
 </header>
 
 <main>
-    <section class="form-container">
-        <h2>Login</h2>
-        <form action="/login" method="POST">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" placeholder="Enter your username" required>
+   
+    <section id="signup" style="display:none;">
+        <h2>Create an Account</h2>
+        <div class="form-container">
+            <form id="signup-form">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required placeholder="Enter your username">
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email">
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required placeholder="Enter your password">
+                
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </section>
+    
+    
 
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" placeholder="Enter your password" required>
-
-            <button type="submit">Login</button>
-        </form>
-        <p>Don't have an account? <a href="getstarted.html">Sign up here</a></p>
+    
+    <section id="login">
+        <h2>Login to Your Account</h2>
+        <div class="form-container">
+            <form id="login-form">
+                <label for="login-email">Email:</label>
+                <input type="email" id="login-email" name="login-email" required placeholder="Enter your email">
+                <label for="login-password">Password:</label>
+                <input type="password" id="login-password" name="login-password" required placeholder="Enter your password">
+                <button type="submit">Log In</button>
+            </form>
+        </div>
     </section>
 </main>
 <div class="content">
-        
-    
-
-        <a href="index.html" class="back-link">Back</a>
-    </div>
-
+    <a href="index.html" class="back-link">Back</a>
+</div>
 <footer>
-    <p>&copy; 2024 CEN3722 Group 11. All Rights Reserved.</p>
+    <p>Created by Group 11 &copy; 2024</p>
 </footer>
+
+<script src="script.js"></script>
 
 </body>
 </html>
